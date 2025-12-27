@@ -1,0 +1,19 @@
+{
+  "name": "livechat-clone",
+  "version": "1.0.0",
+  "description": "Full-featured LiveChat clone",
+  "scripts": {
+    "setup": "npm run install:all",
+    "install:all": "cd backend && npm install && cd ../dashboard && npm install && cd ../widget && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:dashboard\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:dashboard": "cd dashboard && npm start",
+    "build": "cd dashboard && npm run build && cd ../widget && npm run build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "seed": "cd backend && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
