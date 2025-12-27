@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/livechat
+      # WARNING: Change this secret in production! This is for demo/development only
+      - JWT_SECRET=demo-secret-key-for-testing
+      - NODE_ENV=development
+      - CORS_ORIGIN=http://localhost:3000
+    depends_on:
+      - mongodb
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+      - REACT_APP_SOCKET_URL=http://localhost:5000
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

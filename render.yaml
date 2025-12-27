@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: livechat-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: livechat-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: web
+    name: livechat-dashboard
+    env: static
+    buildCommand: cd dashboard && npm install && npm run build
+    staticPublishPath: ./dashboard/build
+    envVars:
+      - key: REACT_APP_API_URL
+        # Note: Update this with your backend URL after deployment: https://your-backend-url.onrender.com/api
+        value: REPLACE_WITH_BACKEND_URL/api
+      - key: REACT_APP_SOCKET_URL
+        # Note: Update this with your backend URL after deployment: https://your-backend-url.onrender.com
+        value: REPLACE_WITH_BACKEND_URL
+
+databases:
+  - name: livechat-db
+    engine: mongo
+    version: "6"

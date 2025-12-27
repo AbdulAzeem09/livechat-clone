@@ -1,0 +1,20 @@
+{
+  "name": "livechat-widget",
+  "version": "1.0.0",
+  "description": "LiveChat Clone Embeddable Widget",
+  "main": "dist/widget.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.7.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "babel-loader": "^9.1.3"
+  }
+}
