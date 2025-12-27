@@ -35,8 +35,32 @@ const userSchema = new mongoose.Schema({
     default: '',
   },
   department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department',
+    default: null,
+  },
+  maxConcurrentChats: {
+    type: Number,
+    default: 5,
+  },
+  currentChatCount: {
+    type: Number,
+    default: 0,
+  },
+  skills: [{
     type: String,
-    default: 'Support',
+  }],
+  language: {
+    type: String,
+    default: 'en',
+  },
+  refreshToken: {
+    type: String,
+    select: false,
+  },
+  lastLogin: {
+    type: Date,
+    default: null,
   },
   createdAt: {
     type: Date,
