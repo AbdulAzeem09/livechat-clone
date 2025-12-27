@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: livechat-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: livechat
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - livechat-network
+
+  backend:
+    build: ./backend
+    container_name: livechat-backend
+    restart: unless-stopped
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/livechat
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      JWT_EXPIRE: 7d
+      CORS_ORIGIN: http://localhost:3000,http://localhost:3001
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    networks:
+      - livechat-network
+
+  dashboard:
+    build: ./dashboard
+    container_name: livechat-dashboard
+    restart: unless-stopped
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+      REACT_APP_SOCKET_URL: http://localhost:5000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - livechat-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  livechat-network:
+    driver: bridge
