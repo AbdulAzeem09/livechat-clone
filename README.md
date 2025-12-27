@@ -11,6 +11,7 @@ A production-ready, full-featured customer support chat application similar to L
 - 🇬🇧 **[SETUP.md](./SETUP.md)** - Complete step-by-step setup guide (English)
 - 🇵🇰 **[RUNNING_UR.md](./RUNNING_UR.md)** - چلانے کی مکمل گائیڈ (Urdu/اردو)
 - ⚡ **[QUICKSTART.md](./QUICKSTART.md)** - Quick start in 5 minutes
+- 📝 **[CHEATSHEET.md](./CHEATSHEET.md)** - Command reference & quick tips
 
 ## 🚀 One-Click Deployment
 

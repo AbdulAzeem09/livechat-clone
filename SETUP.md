@@ -2,6 +2,28 @@
 
 This guide will help you set up and run the LiveChat Clone application on your local machine.
 
+## 🎯 Quick Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  LiveChat Clone Setup Flow                   │
+└─────────────────────────────────────────────────────────────┘
+
+1. ✅ Install Prerequisites (Node.js, MongoDB, Git)
+         ↓
+2. 📥 Clone Repository & Install Dependencies
+         ↓
+3. ⚙️  Setup Environment Files (.env)
+         ↓
+4. 🌱 Seed Database (Optional - adds demo data)
+         ↓
+5. 🚀 Start Services (Backend → Dashboard → Widget)
+         ↓
+6. 🎉 Access at http://localhost:3000
+```
+
+**Estimated Time:** 15-20 minutes (first time setup)
+
 ## 📋 Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
