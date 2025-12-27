@@ -73,6 +73,11 @@
       const button = document.querySelector('.livechat-button');
       const window = document.querySelector('.livechat-window');
       
+      if (!button || !window) {
+        console.error('LiveChat Widget: Could not find widget elements');
+        return;
+      }
+      
       button.addEventListener('click', () => {
         this.isOpen = !this.isOpen;
         window.classList.toggle('open');

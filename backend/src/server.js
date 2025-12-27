@@ -7,6 +7,8 @@ require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
+// WARNING: CORS wildcard '*' is used for development/demo.
+// In production, set CORS_ORIGIN to specific allowed domains for security
 const io = socketIo(server, {
   cors: {
     origin: process.env.CORS_ORIGIN || '*',
@@ -15,6 +17,8 @@ const io = socketIo(server, {
 });
 
 // Middleware
+// WARNING: CORS wildcard '*' is used for development/demo. 
+// In production, set CORS_ORIGIN to specific allowed domains for security
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*'
 }));

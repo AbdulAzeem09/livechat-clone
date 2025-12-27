@@ -143,7 +143,10 @@ livechat-clone/
 2. Render will create:
    - Backend service with MongoDB
    - Dashboard static site
-3. All environment variables are auto-configured
+3. **Important**: After deployment, update the dashboard environment variables:
+   - Set `REACT_APP_API_URL` to your backend URL + `/api` (e.g., `https://your-backend.onrender.com/api`)
+   - Set `REACT_APP_SOCKET_URL` to your backend URL (e.g., `https://your-backend.onrender.com`)
+4. Other environment variables are auto-configured
 
 ### Vercel (Frontend Only)
 1. Click the "Deploy with Vercel" button above
@@ -194,6 +197,13 @@ CORS_ORIGIN=http://localhost:3000
 ```
 
 **⚠️ Security Note**: Always use strong, unique secrets in production. Never commit `.env` files with real credentials to version control.
+
+**⚠️ Production Security Checklist**:
+- Replace demo JWT_SECRET with a strong random secret
+- Configure CORS_ORIGIN to allow only trusted domains (not wildcard `*`)
+- Use HTTPS for all API endpoints
+- Change default demo password if keeping demo accounts
+- Regularly update dependencies for security patches
 
 ### Dashboard Environment Variables
 ```env

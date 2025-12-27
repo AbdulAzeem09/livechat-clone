@@ -54,6 +54,8 @@ const seedData = async () => {
     console.log('Cleared existing data');
 
     // Create demo user
+    // NOTE: Using weak password 'demo123' for demo purposes only.
+    // In production, use strong passwords or remove demo accounts entirely.
     const hashedPassword = await bcrypt.hash('demo123', 10);
     const demoUser = await User.create({
       name: 'Demo Agent',
