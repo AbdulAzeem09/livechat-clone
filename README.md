@@ -193,6 +193,8 @@ JWT_SECRET=your-secret-key
 CORS_ORIGIN=http://localhost:3000
 ```
 
+**⚠️ Security Note**: Always use strong, unique secrets in production. Never commit `.env` files with real credentials to version control.
+
 ### Dashboard Environment Variables
 ```env
 REACT_APP_API_URL=http://localhost:5000/api

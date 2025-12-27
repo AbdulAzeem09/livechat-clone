@@ -21,10 +21,11 @@ services:
     staticPublishPath: ./dashboard/build
     envVars:
       - key: REACT_APP_API_URL
-        fromService:
-          type: web
-          name: livechat-backend
-          property: host
+        # Note: Update this with your backend URL after deployment: https://your-backend-url.onrender.com/api
+        value: REPLACE_WITH_BACKEND_URL/api
+      - key: REACT_APP_SOCKET_URL
+        # Note: Update this with your backend URL after deployment: https://your-backend-url.onrender.com
+        value: REPLACE_WITH_BACKEND_URL
 
 databases:
   - name: livechat-db
