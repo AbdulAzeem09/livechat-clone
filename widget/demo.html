@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveChat Widget Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #667eea;
+        }
+        .info {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 LiveChat Widget Demo</h1>
+    
+    <div class="info">
+        <h2>About This Demo</h2>
+        <p>This page demonstrates how to integrate the LiveChat widget into your website.</p>
+        <p>Look for the chat button in the bottom-right corner of the page!</p>
+    </div>
+
+    <div class="info">
+        <h2>How to Integrate</h2>
+        <p>Add the following code to your HTML:</p>
+        <pre><code>&lt;script src="path/to/widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  LiveChatWidget.init({
+    apiUrl: 'http://localhost:5000'
+  });
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <div class="info">
+        <h2>Features</h2>
+        <ul>
+            <li>✅ Pre-chat form to collect visitor information</li>
+            <li>✅ Real-time messaging with Socket.io</li>
+            <li>✅ Typing indicators</li>
+            <li>✅ Unread message badge</li>
+            <li>✅ Post-chat rating system</li>
+            <li>✅ Mobile responsive design</li>
+        </ul>
+    </div>
+
+    <!-- LiveChat Widget -->
+    <script src="./dist/widget.js"></script>
+    <script>
+        // Initialize the widget
+        LiveChatWidget.init({
+            apiUrl: 'http://localhost:5000'
+        });
+    </script>
+</body>
+</html>
