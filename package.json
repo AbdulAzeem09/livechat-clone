@@ -1,0 +1,16 @@
+{
+  "name": "livechat-clone",
+  "version": "1.0.0",
+  "description": "Full-featured customer support chat application",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../dashboard && npm install && cd ../widget && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:dashboard": "cd dashboard && npm start",
+    "build:widget": "cd widget && npm run build",
+    "build:all": "cd dashboard && npm run build && cd ../widget && npm run build"
+  },
+  "keywords": ["livechat", "chat", "support", "customer-service"],
+  "author": "",
+  "license": "MIT"
+}
