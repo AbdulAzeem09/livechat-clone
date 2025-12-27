@@ -5,6 +5,13 @@ A production-ready, full-featured customer support chat application similar to L
 ![LiveChat Clone](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+## 📖 Setup & Running Guides
+
+**New to this project? Start here:**
+- 🇬🇧 **[SETUP.md](./SETUP.md)** - Complete step-by-step setup guide (English)
+- 🇵🇰 **[RUNNING_UR.md](./RUNNING_UR.md)** - چلانے کی مکمل گائیڈ (Urdu/اردو)
+- ⚡ **[QUICKSTART.md](./QUICKSTART.md)** - Quick start in 5 minutes
+
 ## 🚀 One-Click Deployment
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/AbdulAzeem09/livechat-clone)
