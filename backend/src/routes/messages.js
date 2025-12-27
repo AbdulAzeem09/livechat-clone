@@ -122,4 +122,127 @@ router.put('/conversation/:conversationId/read-all', protect, async (req, res) =
   }
 });
 
+/**
+ * @route   POST /api/messages/:id/react
+ * @desc    Add reaction to message
+ * @access  Private
+ */
+router.post('/:id/react', protect, async (req, res) => {
+  try {
+    const { emoji } = req.body;
+
+    if (!emoji) {
+      return res.status(400).json({ message: 'Emoji is required' });
+    }
+
+    const message = await Message.findById(req.params.id);
+    if (!message) {
+      return res.status(404).json({ message: 'Message not found' });
+    }
+
+    // Check if user already reacted with this emoji
+    const existingReaction = message.reactions.find(
+      r => r.user.toString() === req.user._id.toString() && r.emoji === emoji
+    );
+
+    if (existingReaction) {
+      // Remove reaction if already exists
+      message.reactions = message.reactions.filter(
+        r => !(r.user.toString() === req.user._id.toString() && r.emoji === emoji)
+      );
+    } else {
+      // Add new reaction
+      message.reactions.push({
+        emoji,
+        user: req.user._id,
+        userModel: 'User',
+      });
+    }
+
+    await message.save();
+    await message.populate('reactions.user', 'name');
+    
+    res.json(message);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+/**
+ * @route   PUT /api/messages/:id/edit
+ * @desc    Edit message content
+ * @access  Private
+ */
+router.put('/:id/edit', protect, async (req, res) => {
+  try {
+    const { content } = req.body;
+
+    if (!content) {
+      return res.status(400).json({ message: 'Content is required' });
+    }
+
+    const message = await Message.findById(req.params.id);
+    if (!message) {
+      return res.status(404).json({ message: 'Message not found' });
+    }
+
+    // Check if user owns the message
+    if (message.senderId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'Not authorized to edit this message' });
+    }
+
+    // Add current content to edit history
+    message.editHistory.push({
+      content: message.content,
+      editedAt: new Date(),
+    });
+
+    // Update message
+    message.content = content;
+    message.isEdited = true;
+    message.editedAt = new Date();
+
+    await message.save();
+    await message.populate('senderId', 'name email');
+    
+    res.json(message);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+/**
+ * @route   DELETE /api/messages/:id
+ * @desc    Delete message (soft delete)
+ * @access  Private
+ */
+router.delete('/:id', protect, async (req, res) => {
+  try {
+    const message = await Message.findById(req.params.id);
+    if (!message) {
+      return res.status(404).json({ message: 'Message not found' });
+    }
+
+    // Check if user owns the message or is admin
+    if (
+      message.senderId.toString() !== req.user._id.toString() &&
+      req.user.role !== 'admin' &&
+      req.user.role !== 'super_admin'
+    ) {
+      return res.status(403).json({ message: 'Not authorized to delete this message' });
+    }
+
+    // Soft delete
+    message.isDeleted = true;
+    message.deletedAt = new Date();
+    message.content = '[Message deleted]';
+
+    await message.save();
+    
+    res.json({ message: 'Message deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
 module.exports = router;

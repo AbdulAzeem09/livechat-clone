@@ -15,6 +15,12 @@ const messageRoutes = require('./routes/messages');
 const visitorRoutes = require('./routes/visitors');
 const analyticsRoutes = require('./routes/analytics');
 const cannedResponseRoutes = require('./routes/cannedResponses');
+const departmentRoutes = require('./routes/departments');
+const tagRoutes = require('./routes/tags');
+const webhookRoutes = require('./routes/webhooks');
+const triggerRoutes = require('./routes/triggers');
+const widgetRoutes = require('./routes/widgets');
+const businessHoursRoutes = require('./routes/businessHours');
 
 // Initialize express app
 const app = express();
@@ -54,6 +60,12 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/visitors', visitorRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/canned-responses', cannedResponseRoutes);
+app.use('/api/departments', departmentRoutes);
+app.use('/api/tags', tagRoutes);
+app.use('/api/webhooks', webhookRoutes);
+app.use('/api/triggers', triggerRoutes);
+app.use('/api/widgets', widgetRoutes);
+app.use('/api/business-hours', businessHoursRoutes);
 
 // 404 handler
 app.use((req, res) => {
