@@ -42,6 +42,56 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
+  // Reply to another message
+  replyTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Message',
+    default: null,
+  },
+  // Message reactions
+  reactions: [{
+    emoji: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      refPath: 'reactions.userModel',
+    },
+    userModel: {
+      type: String,
+      enum: ['User', 'Visitor'],
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }],
+  // Edit history
+  isEdited: {
+    type: Boolean,
+    default: false,
+  },
+  editedAt: {
+    type: Date,
+    default: null,
+  },
+  editHistory: [{
+    content: String,
+    editedAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }],
+  // Deletion
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
+  deletedAt: {
+    type: Date,
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -1,0 +1,55 @@
+{
+  "name": "LiveChat Clone Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "workspaceFolder": "/workspace",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/mongodb:1": {
+      "version": "7"
+    }
+  },
+  
+  "forwardPorts": [3000, 5000, 27017],
+  "portsAttributes": {
+    "3000": {
+      "label": "Dashboard",
+      "onAutoForward": "openBrowser"
+    },
+    "5000": {
+      "label": "Backend API",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mongodb.mongodb-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dsznajder.es7-react-js-snippets"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        }
+      }
+    }
+  },
+  
+  "postCreateCommand": "npm run install:all",
+  "postStartCommand": "cd backend && npm run seed",
+  
+  "remoteUser": "node"
+}

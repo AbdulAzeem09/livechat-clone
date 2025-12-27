@@ -38,9 +38,46 @@ const visitorSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  // Geolocation tracking
+  geolocation: {
+    latitude: {
+      type: Number,
+      default: null,
+    },
+    longitude: {
+      type: Number,
+      default: null,
+    },
+    accuracy: {
+      type: Number,
+      default: null,
+    },
+    timestamp: {
+      type: Date,
+      default: null,
+    },
+  },
+  // Page tracking
   currentPage: {
     type: String,
     default: '',
+  },
+  pageViews: [{
+    url: String,
+    title: String,
+    timestamp: {
+      type: Date,
+      default: Date.now,
+    },
+    duration: Number, // seconds spent on page
+  }],
+  visitCount: {
+    type: Number,
+    default: 1,
+  },
+  totalTimeOnSite: {
+    type: Number,
+    default: 0, // in seconds
   },
   referrer: {
     type: String,
