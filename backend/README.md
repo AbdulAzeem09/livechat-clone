@@ -2,6 +2,12 @@
 
 Backend API server for LiveChat Clone application built with Node.js, Express, Socket.io, and MongoDB.
 
+> 📖 **New to this project?** Check out the main setup guides:
+> - [Complete Setup Guide](../SETUP.md) - Step-by-step installation
+> - [Urdu Guide](../RUNNING_UR.md) - اردو میں گائیڈ
+> - [Quick Start](../QUICKSTART.md) - Get started in 5 minutes
+> - [Command Cheatsheet](../CHEATSHEET.md) - Quick reference
+
 ## Features
 
 - JWT-based authentication
